@@ -1,0 +1,63 @@
+html {
+  background: #fff;
+}
+
+html, div {
+    font-family: Helvetica;
+    overflow:hidden;
+}
+
+.backfaceVisibility {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+}
+
+.topLeft {
+    background-color: orange;
+}
+
+.top {
+    background-color: blue;
+    color: white;
+}
+
+.topRight {
+    background-color: black;
+    color: white;
+}
+
+.left {
+    background-color: red;
+}
+
+.middle {
+    background-color: yellow;
+    padding: 10px;
+}
+
+.center {
+    text-align: center;
+    position: relative;
+    top: 40%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.right {
+    background-color: purple;
+    color: white;
+}
+
+.bottomLeft {
+    background-color: cyan;
+}
+
+.bottom {
+    background-color: green;
+    color: white;
+}
+
+.bottomRight {
+    background-color: pink;
+}
