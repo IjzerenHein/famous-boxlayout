@@ -7,9 +7,9 @@ Box-layout is a simple yet powerful layout view for famo.us to:
 * Link a renderable to an inset region (e.g. add a border surface)
 
 Box-layout takes an insets argument as input and then creates a layout accordingly. 
-Box-layout is intended to be very lightweight and will only create layout-contents and properties for which an inset was specified. For instance, if all insets would be set to 0, then box-layout would create one modifier, wrapped in a RenderNode, and that would be assigned to ```.middle```.
+Box-layout is intended to be very lightweight and will only create layout-contents and properties for which an inset was specified. For instance, if all insets would be set to 0, then box-layout would create only one modifier, wrapped in a RenderNode, and that would be assigned to ```.middle```.
 
-BoxLayout is modelled after the standard HeaderFooterLayout and should be very familiar to use.
+A secondary goal of Box-layout is to reduce boilerplate code that you need to write when using layout-views such as GridLayout or FlexibleLayout. Because Box-layout exposes the renderables as properties, you can simple call ```<property>.add()``` to add modifiers and surfaces. Box-layout is modelled after the HeaderFooterLayout view and should be very familiar to use.
 
 ![BoxLayout](BoxLayout.png)
 
@@ -91,8 +91,8 @@ this.add(boxLayout);
 boxLayout.left.add(new Surface({properties: {backgroundColor: 'red'}}));
 boxLayout.right.add(new Surface({properties: {backgroundColor: 'red'}}));
 
-// The following line would throw an error because the top-inset is not set, and thus .top
-// is not available.
+// The following line would throw an error because the top-inset is not set, 
+// and thus .top is not created.
 boxLayout.top.add(new Surface({properties: {backgroundColor: 'red'}}));
 ```
 
