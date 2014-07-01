@@ -79,9 +79,22 @@ Dependent on which insets are specified, properties are created to which rendera
 |```.left```|Left area, only created when **left-inset** is specified.|
 |```.middle```|Middle content, **always created**.|
 |```.right```|Right area, only created when **right-inset** is specified.|
-|```.bottomLeft```|Bottom-left area, only created when **bottom- and left-inset** are specified.|
+|```.bottomLeft```|Bottom-left area, only created when both **bottom- and left-inset** are specified.|
 |```.bottom```|Bottom area, only created when **bottom-inset** is specified.|
-|```.bottomRight```|Bottom-right area, only created when **bottom- and right-inset** are specified.|
+|```.bottomRight```|Bottom-right area, only created when both **bottom- and right-inset** are specified.|
+
+Example:
+
+```javascript
+var boxLayout = new BoxLayout({ insets: [0, 20] });
+this.add(boxLayout);
+boxLayout.left.add(new Surface({properties: {backgroundColor: 'red'}}));
+boxLayout.right.add(new Surface({properties: {backgroundColor: 'red'}}));
+
+// The following line would throw an error because the top-inset is not set, and thus .top
+// is not available.
+boxLayout.top.add(new Surface({properties: {backgroundColor: 'red'}}));
+```
 
 ## Contribute
 
