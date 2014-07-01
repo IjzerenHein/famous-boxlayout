@@ -19,7 +19,7 @@ BoxLayout is modelled after the standard HeaderFooterLayout and should be very f
 
 Install using bower:
 	
-	bower install IjzerenHein/famous-boxlayout
+	bower install famous-boxlayout
 	
 If necessary, add to the requirejs paths config:
 
