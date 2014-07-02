@@ -1,6 +1,6 @@
 {
   "name": "famous-boxlayout",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/IjzerenHein/famous-boxlayout",
   "author": {
     "name": "Hein Rutjes <hrutjes@gmail.com>"
@@ -11,7 +11,9 @@
     "famous",
     "box",
     "layout",
-    "boxLayout"
+    "boxLayout",
+    "margin",
+    "margins"
   ],
   "licenses": [
     {

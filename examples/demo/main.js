@@ -51,14 +51,13 @@ define(function (require, exports, module) {
             
             boxLayout[name].add(surface);
             if (name === 'middle') {
-                surface.setContent('Insets: [' + boxLayout.options.insets + ']<div class="center">.middle</div>');
+                surface.setContent('Margins: [' + boxLayout.options.margins + ']<div class="center">.middle</div>');
             } else {
                 surface.setContent('<div class="center">.' + name + '</div>');
             }
         }
     }
     function setSurfaces(boxLayout) {
-        var SZ = 20;
         addSurface(boxLayout, 'topLeft');
         addSurface(boxLayout, 'top');
         addSurface(boxLayout, 'topRight');
@@ -70,9 +69,9 @@ define(function (require, exports, module) {
         addSurface(boxLayout, 'bottomRight');
     }
     var boxLayouts = [];
-    function createBoxLayout(insets) {
+    function createBoxLayout(margins) {
         var boxLayout = new BoxLayout({
-            insets: insets
+            margins: margins
         });
         setSurfaces(boxLayout);
         var modifier = new Modifier({

@@ -47,25 +47,25 @@ define(function (require, exports, module) {
     function BoxLayout(options) {
         View.apply(this, arguments);
         
-        // normalize insets
-        if (this.options.insets.length === 0) {
-            this.insets = [0, 0, 0, 0];
-        } else if (this.options.insets.length === 1) {
-            this.insets = [
-                this.options.insets[0],
-                this.options.insets[0],
-                this.options.insets[0],
-                this.options.insets[0]
+        // normalize margins
+        if (this.options.margins.length === 0) {
+            this.margins = [0, 0, 0, 0];
+        } else if (this.options.margins.length === 1) {
+            this.margins = [
+                this.options.margins[0],
+                this.options.margins[0],
+                this.options.margins[0],
+                this.options.margins[0]
             ];
-        } else if (this.options.insets.length === 2) {
-            this.insets = [
-                this.options.insets[0],
-                this.options.insets[1],
-                this.options.insets[0],
-                this.options.insets[1]
+        } else if (this.options.margins.length === 2) {
+            this.margins = [
+                this.options.margins[0],
+                this.options.margins[1],
+                this.options.margins[0],
+                this.options.margins[1]
             ];
         } else {
-            this.insets = this.options.insets;
+            this.margins = this.options.margins;
         }
         
         // create layout
@@ -75,7 +75,7 @@ define(function (require, exports, module) {
     BoxLayout.prototype.constructor = BoxLayout;
 
     BoxLayout.DEFAULT_OPTIONS = {
-        insets: [] // top, right, bottom, left (clockwise)
+        margins: [] // top, right, bottom, left (clockwise)
     };
     
             
@@ -83,19 +83,19 @@ define(function (require, exports, module) {
      * Creates and returns the top-level renderable
      */
     BoxLayout.prototype._createLayout = function (horizontal) {
-        var insets = this.insets;
+        var margins = this.margins;
         var ratios;
         var renderables = [];
-        if (insets[1] && insets[3]) {
+        if (margins[1] && margins[3]) {
             ratios = [true, 1, true];
             renderables.push(this._createVerticalLayout(0));
             renderables.push(this._createVerticalLayout(1));
             renderables.push(this._createVerticalLayout(2));
-        } else if (insets[1]) {
+        } else if (margins[1]) {
             ratios = [1, true];
             renderables.push(this._createVerticalLayout(1));
             renderables.push(this._createVerticalLayout(2));
-        } else if (insets[3]) {
+        } else if (margins[3]) {
             ratios = [true, 1];
             renderables.push(this._createVerticalLayout(0));
             renderables.push(this._createVerticalLayout(1));
@@ -114,19 +114,19 @@ define(function (require, exports, module) {
      * Create vertical layout, index: left, middle, right
      */
     BoxLayout.prototype._createVerticalLayout = function (index) {
-        var insets = this.insets;
+        var margins = this.margins;
         var ratios;
         var renderables = [];
-        if (insets[0] && insets[2]) {
+        if (margins[0] && margins[2]) {
             ratios = [true, 1, true];
             renderables.push(this._createRenderable(index));
             renderables.push(this._createRenderable(index + 3));
             renderables.push(this._createRenderable(index + 6));
-        } else if (insets[0]) {
+        } else if (margins[0]) {
             ratios = [true, 1];
             renderables.push(this._createRenderable(index));
             renderables.push(this._createRenderable(index + 3));
-        } else if (insets[2]) {
+        } else if (margins[2]) {
             ratios = [1, true];
             renderables.push(this._createRenderable(index + 3));
             renderables.push(this._createRenderable(index + 6));
@@ -141,9 +141,9 @@ define(function (require, exports, module) {
         
         var modifier;
         if (index === 0) {
-            modifier = new Modifier({ size: [insets[3], undefined]});
+            modifier = new Modifier({ size: [margins[3], undefined]});
         } else if (index === 2) {
-            modifier = new Modifier({ size: [insets[1], undefined]});
+            modifier = new Modifier({ size: [margins[1], undefined]});
         }
         if (modifier) {
             var renderNode = new RenderNode(modifier);
@@ -158,26 +158,26 @@ define(function (require, exports, module) {
      * Creates a renderable, index-order: left-top, top, top-right, left, middle, right, left-bottom, bottom, right-bottom
      */
     BoxLayout.prototype._createRenderable = function (index) {
-        var insets = this.insets;
+        var margins = this.margins;
         
         // determine size
         var size, name;
         switch (index) {
         case 0:
             name = 'topLeft';
-            size = [insets[3], insets[0]];
+            size = [margins[3], margins[0]];
             break;
         case 1:
             name = 'top';
-            size = [undefined, insets[0]];
+            size = [undefined, margins[0]];
             break;
         case 2:
             name = 'topRight';
-            size = [insets[1], insets[0]];
+            size = [margins[1], margins[0]];
             break;
         case 3:
             name = 'left';
-            size = [insets[3], undefined];
+            size = [margins[3], undefined];
             break;
         case 4:
             name = 'middle';
@@ -185,19 +185,19 @@ define(function (require, exports, module) {
             break;
         case 5:
             name = 'right';
-            size = [insets[1], undefined];
+            size = [margins[1], undefined];
             break;
         case 6:
             name = 'bottomLeft';
-            size = [insets[3], insets[2]];
+            size = [margins[3], margins[2]];
             break;
         case 7:
             name = 'bottom';
-            size = [undefined, insets[2]];
+            size = [undefined, margins[2]];
             break;
         case 8:
             name = 'bottomRight';
-            size = [insets[1], insets[2]];
+            size = [margins[1], margins[2]];
             break;
         }
         
